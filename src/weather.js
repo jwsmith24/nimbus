@@ -4,6 +4,7 @@ const cityResultLimit = 5;
 // Main call to get weather.
 export async function getWeather(cityName, stateCode, countryCode) {
   const location = await convertToLatLong(cityName, stateCode, countryCode);
+
   console.log('LAT: ' + location.lat);
   console.log('LONG: ' + location.long);
 
