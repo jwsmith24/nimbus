@@ -31,5 +31,3 @@ export async function convertToLatLong(input) {
 
   return { lat, long };
 }
-
-getWeather('clarksville', 'tn', 'us');

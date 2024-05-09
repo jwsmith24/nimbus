@@ -1,2 +1,4 @@
-import { getWeather } from './weather';
+import { initLocationForm } from './location';
 import './style.css';
+
+initLocationForm();
