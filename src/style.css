@@ -113,6 +113,7 @@ h6 {
 }
 
 .menu-options {
+  display: none;
   list-style-type: none;
   position: absolute;
   top: 50px;
