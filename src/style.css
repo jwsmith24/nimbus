@@ -64,6 +64,7 @@ h6 {
 .container {
   width: 100vw;
   height: 100vh;
+  position: relative;
   display: grid;
   background-color: gray;
 
@@ -120,4 +121,26 @@ h6 {
 
 .menu-options > * {
   background-color: white;
+}
+
+#location-popup {
+  padding: 0;
+  position: fixed;
+  display: grid;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 48px;
+}
+
+.location-form {
+  display: grid;
+  width: min-content;
+  justify-self: center;
+  align-self: center;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(auto-fit, 30px);
+}
+#location-popup h2 {
+  margin-bottom: 18px;
 }
