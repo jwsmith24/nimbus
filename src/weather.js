@@ -12,7 +12,7 @@ export async function getWeather(location) {
 
   const weatherData = await weatherResponse.json();
 
-  console.log(weatherData);
+  processWx(weatherData);
 }
 
 // Async call to GeoCoding API to resolve location name to lat/long
@@ -30,4 +30,21 @@ export async function convertToLatLong(input) {
   const long = resJson[0].lon;
 
   return { lat, long };
+}
+
+function processWx(weatherData) {
+  const wx = {
+    currentTemp: Math.round(kelvinToCelsius(weatherData.main.temp)),
+    highTemp: Math.round(kelvinToCelsius(weatherData.main.temp_max)),
+    lowTemp: Math.round(kelvinToCelsius(weatherData.main.temp_min)),
+    feelsLike: Math.round(kelvinToCelsius(weatherData.main.feels_like)),
+    description: weatherData.weather[0].description,
+  };
+
+  console.log(wx);
+  return wx;
+}
+
+function kelvinToCelsius(kelvinTemp) {
+  return kelvinTemp - 273;
 }
