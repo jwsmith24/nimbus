@@ -11,6 +11,7 @@ For the current day:
 - Current Temp
 - Current Sky Conditions
 - "Feels Like" Temp
+- Relative Humidity
 - High Temp
 - Low Temp
 
@@ -28,3 +29,7 @@ The location can be updated by clicking on the settings icon in the top left to 
 
 > [!NOTE]
 > This project was completed as part of The Odin Project JavaScript course. Emphasis was placed on using `async`, `await`, and `fetch` to work with the OpenWeather and GIPHY APIs.
+
+### Changing the units
+
+The temperature units can be adjusted via the `Units & Measurements` menu option. The user can select from Fahrenheit, Celsius, or Kelvin for their preferred unit.
