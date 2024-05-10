@@ -1,5 +1,6 @@
-import { updateData, updateLocationDisplay } from './display';
-import { processWx } from './data-processing';
+import { updateData, updateForecast, updateLocationDisplay } from './display';
+import { processForecast, processWx } from './data-processing';
+import { defaultLocation } from './location';
 
 const key = '240bfc06d13fa4a6c479581cad040e61';
 const cityResultLimit = 1; //Only gets the city that best matches search criteria
@@ -16,6 +17,7 @@ export async function getWeather(location) {
   const weatherData = await weatherResponse.json();
   // Update UI with new wx data
   updateData(processWx(weatherData));
+  getForecasts();
   updateLocationDisplay(await resolveLocationName(weatherData.coord));
 }
 
@@ -46,4 +48,26 @@ export async function resolveLocationName(location) {
     name: jsonResponse[0].name,
     country: jsonResponse[0].country,
   };
+}
+
+// Free tier of OpenWeather doesn't provide daily forecasts, instead it provides a 5-day forecast at 3-hour increments (40 total lines of data)
+// The data point for 1200 on each day is used for simplicity.
+export async function getForecasts() {
+  const response = await fetch(
+    `http://api.openweathermap.org/data/2.5/forecast?lat=${defaultLocation.lat}&lon=${defaultLocation.long}&appid=${key}`
+  );
+
+  const forecastData = await response.json();
+
+  const nextDayForecast = forecastData.list[4]; // grab the data for 1200 on the next and second day
+  const secondDayForecast = forecastData.list[12];
+
+  const forecast = {
+    nextDayTemp: nextDayForecast.main.temp,
+    nextDayCondition: nextDayForecast.weather[0].main,
+    secondDayTemp: secondDayForecast.main.temp,
+    secondDayCondition: secondDayForecast.weather[0].main,
+  };
+
+  updateForecast(processForecast(forecast));
 }

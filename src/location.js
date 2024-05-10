@@ -16,6 +16,12 @@ const changeLocationButton = document.getElementById('change-location');
 
 let currentLocation;
 
+// default lat long of San Diego if browser doesn't support geolocation
+export const defaultLocation = {
+  lat: 32.7154736,
+  long: -117.161087,
+};
+
 // Fetch lat long when location changes.
 async function getLatLong() {
   const input = {
@@ -68,5 +74,6 @@ function getUserLocation() {
     });
   } else {
     console.error('This browser does not support geolocation');
+    getWeather(defaultLocation);
   }
 }

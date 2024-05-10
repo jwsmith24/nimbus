@@ -19,6 +19,21 @@ export function processWx(weatherData) {
   return wx;
 }
 
+export function processForecast(forecastData) {
+  let unitConversion = setUnitConversion();
+
+  const wx = {
+    nextDayTemp: Math.round(unitConversion(forecastData.nextDayTemp)),
+    nextDayCondition: forecastData.nextDayCondition,
+    secondDayTemp: Math.round(unitConversion(forecastData.secondDayTemp)),
+    secondDayCondition: forecastData.secondDayCondition,
+    unit: '\u00B0 ' + tempUnit.toUpperCase(),
+  };
+
+  console.log(wx);
+  return wx;
+}
+
 function updateTempUnit(unit) {
   if (unit === 'f' || unit === 'c' || unit === 'k') {
     tempUnit = unit;

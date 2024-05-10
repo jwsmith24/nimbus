@@ -8,7 +8,9 @@ const high = document.getElementById('high');
 const low = document.getElementById('low');
 
 // forecast elements
-//tbd
+const nextDayForecast = document.getElementById('next-forecast');
+
+const secondDayForecast = document.getElementById('second-forecast');
 
 export function updateData(wx) {
   console.log('From display.js: ');
@@ -23,11 +25,19 @@ export function updateData(wx) {
   humidity.textContent = `Humidity: ${wx.humidity}%`;
 }
 
+export function updateForecast(forecastData) {
+  console.log('forecast data from update forecast');
+  console.log(forecastData);
+  nextDayForecast.textContent = `Tomorrow: ${forecastData.nextDayTemp}${forecastData.unit} and ${forecastData.nextDayCondition}`;
+
+  secondDayForecast.textContent = `Next Day: ${forecastData.secondDayTemp}${forecastData.unit} and ${forecastData.secondDayCondition}`;
+}
+
 export function updateLocationDisplay(locationObj) {
   location.textContent = locationObj.name;
 }
 
-export function initDropDown() {
+export function initMenu() {
   const dropDownIcon = document.getElementById('drop-down');
   const menuOptions = document.querySelector('.menu-options');
   let dropDownOpen = true;
