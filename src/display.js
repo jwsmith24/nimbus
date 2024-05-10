@@ -1,3 +1,5 @@
+import { getBackgroundImage } from './giphy';
+
 // current data elements
 const location = document.getElementById('location');
 const temp = document.getElementById('temp');
@@ -9,8 +11,16 @@ const low = document.getElementById('low');
 
 // forecast elements
 const nextDayForecast = document.getElementById('next-forecast');
-
 const secondDayForecast = document.getElementById('second-forecast');
+
+// background image
+const background = document.querySelector('.container');
+
+async function setBackground(type) {
+  const url = await getBackgroundImage(type);
+  console.log(url);
+  background.style.backgroundImage = 'url(' + url + ')';
+}
 
 export function updateData(wx) {
   temp.textContent = `Current Temp: ${wx.currentTemp}${wx.unit}`;
@@ -20,6 +30,7 @@ export function updateData(wx) {
   high.textContent = `High: ${wx.highTemp}${wx.unit}`;
   low.textContent = `Low: ${wx.lowTemp}${wx.unit}`;
   humidity.textContent = `Humidity: ${wx.humidity}%`;
+  setBackground(wx.type);
 }
 
 export function updateForecastData(forecastData) {

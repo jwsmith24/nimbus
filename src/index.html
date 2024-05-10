@@ -26,34 +26,36 @@
       </div>
 
       <div class="data">
-        <p id="temp">50&deg;F</p>
-        <p id="description">Toasty</p>
-        <p id="feels-like">Feels like:</p>
-        <p id="humidity">Humidity:</p>
-        <p id="high">High: 60&deg;C</p>
-        <p id="low">Low:</p>
-      </div>
-
-      <div class="forecast">
-        <div>
-          <p id="next-forecast">Next day forecast</p>
-          <img
-            src="../resources/sunny.png"
-            alt="Weather icon for the current forecast"
-            width="30"
-            height="auto"
-            id="nextDayIcon"
-          />
+        <div class="current">
+          <p id="temp">50&deg;F</p>
+          <p id="description">Toasty</p>
+          <p id="feels-like">Feels like:</p>
+          <p id="humidity">Humidity:</p>
+          <p id="high">High: 60&deg;C</p>
+          <p id="low">Low:</p>
         </div>
-        <div>
-          <p id="second-forecast">Second day temp</p>
-          <img
-            src="../resources/sunny.png"
-            alt="Weather icon for the current forecast"
-            width="30"
-            height="auto"
-            id="secondDayIcon"
-          />
+
+        <div class="forecast">
+          <div>
+            <p id="next-forecast">Next day forecast</p>
+            <img
+              src="../resources/sunny.png"
+              alt="Weather icon for the current forecast"
+              width="30"
+              height="auto"
+              id="nextDayIcon"
+            />
+          </div>
+          <div>
+            <p id="second-forecast">Second day temp</p>
+            <img
+              src="../resources/sunny.png"
+              alt="Weather icon for the current forecast"
+              width="30"
+              height="auto"
+              id="secondDayIcon"
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -67,7 +69,7 @@
         name="city-name"
         id="city-name"
         required
-        placeholder="Royal Oak"
+        placeholder="Enter city name"
       />
       <label for="state">State: </label>
       <select id="states" required>

@@ -66,10 +66,9 @@ h6 {
   height: 100vh;
   position: relative;
   display: grid;
-  background-color: gray;
 
   grid-template-columns: 1fr;
-  grid-template-rows: 40px 0.7fr 0.3fr;
+  grid-template-rows: 40px 1fr;
   justify-content: center;
   justify-items: center;
 }
@@ -84,7 +83,7 @@ h6 {
 
   height: 40px;
   width: 100vw;
-  background-color: rebeccapurple;
+  background-color: #fca5a5;
   font-weight: bold;
   align-content: center;
   align-items: center;
@@ -99,18 +98,30 @@ h6 {
   grid-column: 2/3;
   text-align: center;
 }
-/* Current Wx Data */
+/* Wx Data */
 .data {
-  grid-row: 2/3;
-  grid-column: 1/2;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: min-content;
+  height: min-content;
+  align-self: center;
+  justify-items: center;
+
+  background-color: #fca5a5;
+
+  border-radius: 8px;
+  padding: 24px;
+  font-weight: bolder;
+  box-shadow: 2px 2px 3px 1px #333;
+}
+
+.current {
   text-align: center;
 }
 
 /* Forecast cluster */
 
 .forecast {
-  grid-row: 3/4;
-  grid-column: 1/2;
   text-align: center;
 }
 
@@ -129,7 +140,7 @@ h6 {
 }
 
 .menu-options > *:hover {
-  background-color: pink;
+  background-color: #fca5a5;
   cursor: pointer;
 }
 

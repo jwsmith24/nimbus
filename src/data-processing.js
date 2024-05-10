@@ -11,6 +11,7 @@ export function processWx(weatherData) {
     lowTemp: Math.round(unitConversion(weatherData.main.temp_min)),
     feelsLike: Math.round(unitConversion(weatherData.main.feels_like)),
     humidity: weatherData.main.humidity,
+    type: weatherData.weather[0].main,
     description: weatherData.weather[0].description,
     unit: '\u00B0 ' + tempUnit.toUpperCase(),
   };
