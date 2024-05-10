@@ -1,4 +1,8 @@
-import { updateData, updateForecast, updateLocationDisplay } from './display';
+import {
+  updateData,
+  updateForecastData,
+  updateLocationDisplay,
+} from './display';
 import { processForecast, processWx } from './data-processing';
 import { defaultLocation } from './location';
 
@@ -7,9 +11,6 @@ const cityResultLimit = 1; //Only gets the city that best matches search criteri
 
 // Main call to get weather.
 export async function getWeather(location) {
-  console.log('LAT: ' + location.lat);
-  console.log('LONG: ' + location.long);
-
   const weatherResponse = await fetch(
     `https://api.openweathermap.org/data/2.5/weather?lat=${location.lat}&lon=${location.long}&appid=${key}`
   );
@@ -17,8 +18,9 @@ export async function getWeather(location) {
   const weatherData = await weatherResponse.json();
   // Update UI with new wx data
   updateData(processWx(weatherData));
-  getForecasts();
+
   updateLocationDisplay(await resolveLocationName(weatherData.coord));
+  getForecasts(weatherData.coord);
 }
 
 // Async call to GeoCoding API to resolve location name to lat/long
@@ -28,9 +30,7 @@ export async function convertToLatLong(input) {
     `http://api.openweathermap.org/geo/1.0/direct?q=${queryInput}&limit=${cityResultLimit}&appid=${key}`
   );
 
-  console.log('Geo Response: ');
   const resJson = await latLong.json();
-  console.log(resJson);
 
   const lat = resJson[0].lat;
   const long = resJson[0].lon;
@@ -52,9 +52,9 @@ export async function resolveLocationName(location) {
 
 // Free tier of OpenWeather doesn't provide daily forecasts, instead it provides a 5-day forecast at 3-hour increments (40 total lines of data)
 // The data point for 1200 on each day is used for simplicity.
-export async function getForecasts() {
+export async function getForecasts(coordinates) {
   const response = await fetch(
-    `http://api.openweathermap.org/data/2.5/forecast?lat=${defaultLocation.lat}&lon=${defaultLocation.long}&appid=${key}`
+    `http://api.openweathermap.org/data/2.5/forecast?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${key}`
   );
 
   const forecastData = await response.json();
@@ -69,5 +69,5 @@ export async function getForecasts() {
     secondDayCondition: secondDayForecast.weather[0].main,
   };
 
-  updateForecast(processForecast(forecast));
+  updateForecastData(processForecast(forecast));
 }

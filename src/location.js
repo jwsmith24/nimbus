@@ -34,7 +34,6 @@ async function getLatLong() {
 }
 
 async function updateLocation() {
-  console.log('hi from update location in location.js');
   currentLocation = await getLatLong();
   // Refresh active wx data with new location
   getWeather(currentLocation);
@@ -67,8 +66,7 @@ function getUserLocation() {
         lat: position.coords.latitude,
         long: position.coords.longitude,
       };
-      console.log('From getUserLocation in location.js:');
-      console.log(currentLocation);
+
       // Refresh active wx data with new location
       getWeather(currentLocation);
     });

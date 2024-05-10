@@ -15,7 +15,6 @@ export function processWx(weatherData) {
     unit: '\u00B0 ' + tempUnit.toUpperCase(),
   };
 
-  console.log(wx);
   return wx;
 }
 
@@ -30,7 +29,6 @@ export function processForecast(forecastData) {
     unit: '\u00B0 ' + tempUnit.toUpperCase(),
   };
 
-  console.log(wx);
   return wx;
 }
 

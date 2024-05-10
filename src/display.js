@@ -13,9 +13,6 @@ const nextDayForecast = document.getElementById('next-forecast');
 const secondDayForecast = document.getElementById('second-forecast');
 
 export function updateData(wx) {
-  console.log('From display.js: ');
-  console.log(wx);
-
   temp.textContent = `Current Temp: ${wx.currentTemp}${wx.unit}`;
   description.textContent =
     'Current Conditions: ' + wx.description.toUpperCase();
@@ -25,12 +22,12 @@ export function updateData(wx) {
   humidity.textContent = `Humidity: ${wx.humidity}%`;
 }
 
-export function updateForecast(forecastData) {
-  console.log('forecast data from update forecast');
-  console.log(forecastData);
+export function updateForecastData(forecastData) {
   nextDayForecast.textContent = `Tomorrow: ${forecastData.nextDayTemp}${forecastData.unit} and ${forecastData.nextDayCondition}`;
 
   secondDayForecast.textContent = `Next Day: ${forecastData.secondDayTemp}${forecastData.unit} and ${forecastData.secondDayCondition}`;
+
+  updateForecastIcons(forecastData);
 }
 
 export function updateLocationDisplay(locationObj) {
@@ -69,5 +66,54 @@ export function initMenu() {
 
   function hideMenu() {
     menuOptions.style.display = 'none';
+  }
+}
+
+function updateForecastIcons(data) {
+  const nextDayIcon = document.getElementById('nextDayIcon');
+  const secondDayIcon = document.getElementById('secondDayIcon');
+  console.log(data);
+
+  setNextDayIcon(data, nextDayIcon);
+  setSecondDayIcon(data, secondDayIcon);
+}
+
+function setNextDayIcon(data, icon) {
+  switch (data.nextDayCondition) {
+    case 'Clear':
+      icon.src = '../resources/sunny.png';
+      break;
+    case 'Clouds':
+      icon.src = '../resources/cloudy.png';
+      break;
+    case 'Rain':
+      icon.src = '../resources/rainy.png';
+      break;
+    case 'Snow':
+      icon.src = '../resources/snow.png';
+      break;
+    case 'Storms':
+      icon.src = '../resources/stormy.png';
+      break;
+  }
+}
+
+function setSecondDayIcon(data, icon) {
+  switch (data.secondDayCondition) {
+    case 'Clear':
+      icon.src = '../resources/sunny.png';
+      break;
+    case 'Clouds':
+      icon.src = '../resources/cloudy.png';
+      break;
+    case 'Rain':
+      icon.src = '../resources/rainy.png';
+      break;
+    case 'Snow':
+      icon.src = '../resources/snow.png';
+      break;
+    case 'Storms':
+      icon.src = '../resources/stormy.png';
+      break;
   }
 }
