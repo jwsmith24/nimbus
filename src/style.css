@@ -116,12 +116,18 @@ h6 {
   display: none;
   list-style-type: none;
   position: absolute;
-  top: 50px;
+  top: 40px;
   left: -30px;
 }
 
 .menu-options > * {
   background-color: white;
+  padding: 10px;
+}
+
+.menu-options > *:hover {
+  background-color: pink;
+  cursor: pointer;
 }
 
 #location-popup {

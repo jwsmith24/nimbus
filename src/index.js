@@ -3,7 +3,7 @@ import './style.css';
 
 const dropDownIcon = document.getElementById('drop-down');
 const menuOptions = document.querySelector('.menu-options');
-let dropDownOpen = false;
+let dropDownOpen = true;
 dropDownIcon.addEventListener('click', () => {
   toggleDropDown();
 });
