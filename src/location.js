@@ -1,7 +1,6 @@
 // Functions for resolving location to lat/long coordinates when the user changes their location
 
-import { convertToLatLong } from './weather';
-import { getWeather } from './weather';
+import { convertToLatLong, getWeather } from './weather';
 
 const cityNameInput = document.getElementById('city-name');
 const stateInput = document.getElementById('states');
@@ -39,7 +38,6 @@ export function initLocationForm() {
   updateButton.addEventListener('click', (event) => {
     event.preventDefault();
     updateLocation();
-
     locationDialog.close();
   });
 

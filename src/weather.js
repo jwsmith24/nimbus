@@ -1,5 +1,7 @@
+import { updateData } from './display';
+
 const key = '240bfc06d13fa4a6c479581cad040e61';
-const cityResultLimit = 5;
+const cityResultLimit = 1; //Only gets the city that best matches search criteria
 
 // Main call to get weather.
 export async function getWeather(location) {
@@ -11,8 +13,8 @@ export async function getWeather(location) {
   );
 
   const weatherData = await weatherResponse.json();
-
-  processWx(weatherData);
+  // Update UI with new wx data
+  updateData(processWx(weatherData));
 }
 
 // Async call to GeoCoding API to resolve location name to lat/long
@@ -32,6 +34,7 @@ export async function convertToLatLong(input) {
   return { lat, long };
 }
 
+// Openweather temps are given in Kelvin. Convert to C and bundle into our own wx object.
 function processWx(weatherData) {
   const wx = {
     currentTemp: Math.round(kelvinToCelsius(weatherData.main.temp)),
