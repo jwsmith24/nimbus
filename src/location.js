@@ -1,7 +1,6 @@
 // Functions for resolving location to lat/long coordinates when the user changes their location
 
 import { convertToLatLong, getWeather } from './weather-api';
-import { updateLocationDisplay } from './display';
 
 const cityNameInput = document.getElementById('city-name');
 const stateInput = document.getElementById('states');

@@ -8,14 +8,30 @@ dropDownIcon.addEventListener('click', () => {
   toggleDropDown();
 });
 
+dropDownIcon.addEventListener('mouseover', () => {
+  displayMenu();
+});
+
+dropDownIcon.addEventListener('mouseout', () => {
+  hideMenu();
+});
+
 function toggleDropDown() {
   dropDownOpen = dropDownOpen ? false : true;
 
   if (dropDownOpen) {
-    menuOptions.style.display = 'none';
+    hideMenu();
   } else {
-    menuOptions.style.display = 'block';
+    displayMenu();
   }
+}
+
+function displayMenu() {
+  menuOptions.style.display = 'block';
+}
+
+function hideMenu() {
+  menuOptions.style.display = 'none';
 }
 
 initLocation();
