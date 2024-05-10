@@ -1,4 +1,5 @@
-import { updateData, updateLocationName } from './display';
+import { updateData, updateLocationDisplay } from './display';
+import { processWx } from './data-processing';
 
 const key = '240bfc06d13fa4a6c479581cad040e61';
 const cityResultLimit = 1; //Only gets the city that best matches search criteria
@@ -15,6 +16,7 @@ export async function getWeather(location) {
   const weatherData = await weatherResponse.json();
   // Update UI with new wx data
   updateData(processWx(weatherData));
+  updateLocationDisplay(await resolveLocationName(weatherData.coord));
 }
 
 // Async call to GeoCoding API to resolve location name to lat/long
@@ -34,20 +36,14 @@ export async function convertToLatLong(input) {
   return { lat, long };
 }
 
-// Openweather temps are given in Kelvin. Convert to C and bundle into our own wx object.
-function processWx(weatherData) {
-  const wx = {
-    currentTemp: Math.round(kelvinToCelsius(weatherData.main.temp)),
-    highTemp: Math.round(kelvinToCelsius(weatherData.main.temp_max)),
-    lowTemp: Math.round(kelvinToCelsius(weatherData.main.temp_min)),
-    feelsLike: Math.round(kelvinToCelsius(weatherData.main.feels_like)),
-    description: weatherData.weather[0].description,
+export async function resolveLocationName(location) {
+  const response = await fetch(
+    `http://api.openweathermap.org/geo/1.0/reverse?lat=${location.lat}&lon=${location.lon}&limit=${cityResultLimit}&appid=${key}`
+  );
+
+  const jsonResponse = await response.json();
+  return {
+    name: jsonResponse[0].name,
+    country: jsonResponse[0].country,
   };
-
-  console.log(wx);
-  return wx;
-}
-
-function kelvinToCelsius(kelvinTemp) {
-  return kelvinTemp - 273;
 }

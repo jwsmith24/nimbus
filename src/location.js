@@ -1,6 +1,7 @@
 // Functions for resolving location to lat/long coordinates when the user changes their location
 
-import { convertToLatLong, getWeather } from './weather';
+import { convertToLatLong, getWeather } from './weather-api';
+import { updateLocationDisplay } from './display';
 
 const cityNameInput = document.getElementById('city-name');
 const stateInput = document.getElementById('states');
@@ -16,12 +17,6 @@ const changeLocationButton = document.getElementById('change-location');
 
 let currentLocation;
 
-const location = document.getElementById('location');
-
-function updateLocationName(name) {
-  location.textContent = name;
-}
-
 // Fetch lat long when location changes.
 async function getLatLong() {
   const input = {
@@ -29,7 +24,6 @@ async function getLatLong() {
     state: stateInput.value,
     country: countryInput.value,
   };
-  location.textContent = input.city;
 
   return await convertToLatLong(input);
 }
