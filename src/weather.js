@@ -1,4 +1,4 @@
-import { updateData } from './display';
+import { updateData, updateLocationName } from './display';
 
 const key = '240bfc06d13fa4a6c479581cad040e61';
 const cityResultLimit = 1; //Only gets the city that best matches search criteria

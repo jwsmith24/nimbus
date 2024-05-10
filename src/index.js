@@ -1,4 +1,4 @@
-import { initLocationForm } from './location';
+import { initLocation } from './location';
 import './style.css';
 
 const dropDownIcon = document.getElementById('drop-down');
@@ -18,4 +18,4 @@ function toggleDropDown() {
   }
 }
 
-initLocationForm();
+initLocation();

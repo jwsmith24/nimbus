@@ -16,6 +16,12 @@ const changeLocationButton = document.getElementById('change-location');
 
 let currentLocation;
 
+const location = document.getElementById('location');
+
+function updateLocationName(name) {
+  location.textContent = name;
+}
+
 // Fetch lat long when location changes.
 async function getLatLong() {
   const input = {
@@ -23,6 +29,7 @@ async function getLatLong() {
     state: stateInput.value,
     country: countryInput.value,
   };
+  location.textContent = input.city;
 
   return await convertToLatLong(input);
 }
@@ -34,7 +41,9 @@ async function updateLocation() {
   getWeather(currentLocation);
 }
 
-export function initLocationForm() {
+export function initLocation() {
+  getUserLocation();
+
   updateButton.addEventListener('click', (event) => {
     event.preventDefault();
     updateLocation();
@@ -50,4 +59,21 @@ export function initLocationForm() {
   changeLocationButton.addEventListener('click', () => {
     locationDialog.showModal();
   });
+}
+
+function getUserLocation() {
+  if ('geolocation' in navigator) {
+    navigator.geolocation.getCurrentPosition((position) => {
+      currentLocation = {
+        lat: position.coords.latitude,
+        long: position.coords.longitude,
+      };
+      console.log('From getUserLocation in location.js:');
+      console.log(currentLocation);
+      // Refresh active wx data with new location
+      getWeather(currentLocation);
+    });
+  } else {
+    console.error('This browser does not support geolocation');
+  }
 }

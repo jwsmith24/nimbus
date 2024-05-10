@@ -4,7 +4,7 @@ Get the latest weather data while learning fun facts about clouds!
 
 ## Using the Program
 
-The weather app defaults to a location based on the user's IP address. The app presents the following data sourced from the Openweather API:
+The weather app defaults to a location based on the user's IP address. The app presents the following data sourced from the OpenWeather API:
 
 For the current day:
 
@@ -20,7 +20,7 @@ For the next two days:
 - Low Temp
 - Predominant Sky Conditions
 
-The current conditions can be updated by clicking the refresh option in the drop-down menu.
+The current conditions can be updated by clicking the `refresh` option in the drop-down menu.
 
 ### Changing the location
 
