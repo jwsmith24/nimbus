@@ -1,3 +1,5 @@
+import { refreshData } from './location';
+
 // default to F temps
 let tempUnit = 'f';
 
@@ -34,12 +36,14 @@ export function processForecast(forecastData) {
 }
 
 export function updateTempUnit(unit) {
+  console.log('unit: ' + unit);
   if (unit === 'f' || unit === 'c' || unit === 'k') {
     tempUnit = unit;
   } else {
     console.error('Invalid unit, defaulting to F');
     tempUnit = 'f';
   }
+  refreshData();
 }
 
 function setUnitConversion() {

@@ -33,7 +33,7 @@ async function getLatLong() {
   return await convertToLatLong(input);
 }
 
-async function updateLocation() {
+export async function refreshData() {
   currentLocation = await getLatLong();
   // Refresh active wx data with new location
   getWeather(currentLocation);
@@ -44,7 +44,7 @@ export function initLocation() {
 
   updateButton.addEventListener('click', (event) => {
     event.preventDefault();
-    updateLocation();
+    refreshData();
     locationDialog.close();
   });
 

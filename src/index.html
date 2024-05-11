@@ -19,7 +19,7 @@
           <ul class="menu-options">
             <li id="change-location">Change Location</li>
             <li id="refresh">Refresh Data</li>
-            <li id="unit-options">Units & Measurement</li>
+            <li id="unit-options">Units</li>
           </ul>
         </div>
         <p id="location">Location</p>
@@ -60,9 +60,9 @@
       </div>
     </div>
   </body>
-  <dialog id="location-popup">
+  <dialog class="popup" id="location-popup">
     <h2>Set Location</h2>
-    <form action="none" class="location-form">
+    <form action="" class="location-form">
       <label for="city-name">City Name: </label>
       <input
         type="text"
@@ -135,6 +135,25 @@
       <div class="location-buttons">
         <button id="update-button">Update</button>
         <button id="cancel-button">Cancel</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="units-popup" class="popup">
+    <h2>Change Units</h2>
+
+    <form action="" id="units-form">
+      <div class="unit-options">
+        <label for="temp-change">Temperature:</label>
+        <select name="temp-change" id="temp-change">
+          <option value="f" selected>Fahrenheit</option>
+          <option value="c">Celsius</option>
+          <option value="k">Kelvin</option>
+        </select>
+      </div>
+      <div class="unit-buttons">
+        <button id="update-units-btn">Update</button>
+        <button id="cancel-units-btn">Cancel</button>
       </div>
     </form>
   </dialog>

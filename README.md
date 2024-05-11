@@ -31,4 +31,4 @@ The location can be updated by clicking on the settings icon in the top left to 
 
 ### Changing the units
 
-The temperature units can be adjusted via the `Units & Measurements` menu option. The user can select from Fahrenheit, Celsius, or Kelvin for their preferred unit.
+The temperature units can be adjusted via the `Units` menu option. The user can select from Fahrenheit, Celsius, or Kelvin for their preferred unit.

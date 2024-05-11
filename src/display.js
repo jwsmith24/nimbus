@@ -1,4 +1,6 @@
+import { updateTempUnit } from './data-processing';
 import { getBackgroundImage } from './giphy';
+import { refreshData } from './location';
 
 // current data elements
 const location = document.getElementById('location');
@@ -15,6 +17,8 @@ const secondDayForecast = document.getElementById('second-forecast');
 
 // background image
 const background = document.querySelector('.container');
+
+const unitDialog = document.getElementById('units-popup');
 
 async function setBackground(type) {
   const url = await getBackgroundImage(type);
@@ -45,9 +49,21 @@ export function updateLocationDisplay(locationObj) {
   location.textContent = locationObj.name;
 }
 
-export function initMenu() {
+export function initMenus() {
+  initDropDownMenu();
+  initUnitMenu();
+}
+
+function initDropDownMenu() {
   const dropDownIcon = document.getElementById('drop-down');
   const menuOptions = document.querySelector('.menu-options');
+  const unitOption = document.getElementById('unit-options');
+  const refreshOption = document.getElementById('refresh');
+
+  refreshOption.addEventListener('click', () => {
+    refreshData();
+  });
+
   let dropDownOpen = true;
   dropDownIcon.addEventListener('click', () => {
     toggleDropDown();
@@ -78,6 +94,31 @@ export function initMenu() {
   function hideMenu() {
     menuOptions.style.display = 'none';
   }
+
+  unitOption.addEventListener('click', () => {
+    unitDialog.showModal();
+  });
+}
+
+function initUnitMenu() {
+  const updateButton = document.getElementById('update-units-btn');
+  const cancelButton = document.getElementById('cancel-units-btn');
+  const tempUnitInput = document.getElementById('temp-change');
+  const unitForm = document.getElementById('units-form');
+
+  updateButton.addEventListener('click', (event) => {
+    event.preventDefault();
+    console.log('temp unit value: ' + tempUnitInput.value);
+    updateTempUnit(tempUnitInput.value);
+    console.log('Units updated to: ' + tempUnitInput.value);
+    unitDialog.close();
+  });
+
+  cancelButton.addEventListener('click', (event) => {
+    event.preventDefault();
+    unitForm.reset();
+    unitDialog.close();
+  });
 }
 
 function updateForecastIcons(data) {
