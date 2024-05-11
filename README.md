@@ -23,7 +23,7 @@ For the next two days:
 - High Temp
 - Predominant Sky Conditions
 
-The current conditions can be updated by clicking the `refresh` option in the drop-down menu.
+The weather data can be updated by clicking the `refresh` option in the drop-down menu.
 
 ### Changing the location
 
@@ -31,4 +31,8 @@ The location can be updated by clicking on the settings icon in the top left to 
 
 ### Changing the units
 
-The temperature units can be adjusted via the `Units` menu option. The user can select from Fahrenheit, Celsius, or Kelvin for their preferred unit.
+The temperature units can be adjusted via the `Units` menu option. The user can select from Fahrenheit, Celsius, or Kelvin for their preferred unit. The display is refreshed with the new units. The logic for converting units is implemented client-side to reduce the amount of HTTP requests.
+
+### Dynamic background
+
+Each time the page loads, the background updates to a random GIF related to the current weather conditions. If the API usage rate is exceeded (100 requests/hour), the background defaults to the weather icons used with the forecasted data.
