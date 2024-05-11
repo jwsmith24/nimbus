@@ -21,7 +21,6 @@ For the current day:
 For the next two days:
 
 - High Temp
-- Low Temp
 - Predominant Sky Conditions
 
 The current conditions can be updated by clicking the `refresh` option in the drop-down menu.

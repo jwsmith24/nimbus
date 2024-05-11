@@ -7,4 +7,3 @@ import { getForecasts } from './weather-api';
 
 initMenu();
 initLocation();
-getForecasts();
