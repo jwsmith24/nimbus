@@ -4,7 +4,6 @@ import {
   updateLocationDisplay,
 } from './display';
 import { processForecast, processWx } from './data-processing';
-import { defaultLocation } from './location';
 
 const key = '240bfc06d13fa4a6c479581cad040e61';
 const cityResultLimit = 1; //Only gets the city that best matches search criteria

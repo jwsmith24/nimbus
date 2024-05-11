@@ -33,7 +33,7 @@ export function processForecast(forecastData) {
   return wx;
 }
 
-function updateTempUnit(unit) {
+export function updateTempUnit(unit) {
   if (unit === 'f' || unit === 'c' || unit === 'k') {
     tempUnit = unit;
   } else {
